@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NackademinWebShop.Models
 {
@@ -13,6 +14,7 @@ namespace NackademinWebShop.Models
         public string Description { get; set; }
         [Required]
         [Range(0, 9999999999999999.99)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
         [Required]
         public Category Category { get; set; }
