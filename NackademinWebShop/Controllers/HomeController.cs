@@ -6,21 +6,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using NackademinWebShop.Services.CategoryServices;
+using NackademinWebShop.ViewModels.Category;
 
 namespace NackademinWebShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICategoryServices _categoryServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICategoryServices categoryServices)
         {
             _logger = logger;
+            _categoryServices = categoryServices;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _categoryServices.GetAll(false);
+            
+            return View(model);
         }
 
         public IActionResult Privacy()

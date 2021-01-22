@@ -1,8 +1,12 @@
-﻿@{
+﻿@model IEnumerable<NackademinWebShop.ViewModels.Category.CategoryIndexViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @foreach (var category in Model)
+    {
+        <a>@category.Name (@category.ProductCount)</a>
+    }
 </div>
