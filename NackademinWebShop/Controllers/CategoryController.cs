@@ -52,5 +52,12 @@ namespace NackademinWebShop.Controllers
 
             return View(model);
         }
+
+        public IActionResult Delete(int id)
+        {
+           //todo we need too implement a check, so we do not delete categories that have products in them.
+            _categoryServices.Delete(id);
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

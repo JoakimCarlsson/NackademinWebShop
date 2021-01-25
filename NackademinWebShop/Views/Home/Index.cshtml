@@ -9,7 +9,15 @@
 <div class="text-center">
     @foreach (var category in Model)
     {
-        <a>@category.Name (@category.ProductCount)</a>
-        <a asp-controller="Category" asp-action="Edit" asp-route-Id="@category.Id">Edit</a>
+        <div class="row">
+            <a>@category.Name (@category.ProductCount)</a>
+        </div>
+        <div class="row">
+            <a asp-controller="Category" asp-action="Edit" asp-route-Id="@category.Id">Edit</a>
+        </div>
+
+        <div class="row">
+            <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+        </div>
     }
 </div>

@@ -24,8 +24,7 @@ namespace NackademinWebShop.Controllers
 
         public IActionResult Index()
         {
-            var model = _categoryServices.GetAll(false);
-            
+            var model = _categoryServices.GetAll(true);
             return View(model);
         }
 

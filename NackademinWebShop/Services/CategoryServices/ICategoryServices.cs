@@ -9,5 +9,6 @@ namespace NackademinWebShop.Services.CategoryServices
         void Create(CategoryCreateViewModel model);
         CategoryEditViewModel GetById(int id);
         void Update(CategoryEditViewModel model);
+        void Delete(int id);
     }
 }
