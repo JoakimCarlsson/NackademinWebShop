@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NackademinWebShop.Services.CategoryServices;
-using NackademinWebShop.ViewModels.Category;
+using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.Controllers
 {
@@ -15,6 +15,12 @@ namespace NackademinWebShop.Controllers
         public CategoryController(ICategoryServices categoryServices)
         {
             _categoryServices = categoryServices;
+        }
+
+        public IActionResult Index(int id)
+        {
+            var model = _categoryServices.Get(id);
+            return View(model);
         }
 
         public IActionResult Create()

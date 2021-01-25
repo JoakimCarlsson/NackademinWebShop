@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using NackademinWebShop.Models;
-using NackademinWebShop.ViewModels.Category;
+using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.Mappings
 {
@@ -17,6 +17,7 @@ namespace NackademinWebShop.Mappings
             CreateMap<CategoryCreateViewModel, Category>();
             CreateMap<CategoryEditViewModel, Category>();
             CreateMap<Category, CategoryEditViewModel>();
+            CreateMap<Category, CategoryListIndexViewModel>();
         }
     }
 }

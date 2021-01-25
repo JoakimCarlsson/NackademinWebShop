@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
-using NackademinWebShop.ViewModels.Category;
+using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.Services.CategoryServices
 {
@@ -43,6 +43,11 @@ namespace NackademinWebShop.Services.CategoryServices
 
             var categoryEditViewModel = _mapper.Map<CategoryEditViewModel>(category);
             return categoryEditViewModel;
+        }
+
+        public CategoryListIndexViewModel Get(int id)
+        {
+            return _mapper.Map<CategoryListIndexViewModel>(_categoryRepository.GetById(id));
         }
 
         public void Update(CategoryEditViewModel model)

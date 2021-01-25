@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NackademinWebShop.ViewModels.Category.CategoryIndexViewModel>
+﻿@model IEnumerable<NackademinWebShop.ViewModels.Categories.CategoryIndexViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,7 +9,9 @@
 <ul class="list-unstyled small text-muted pl-lg-4 font-weight-normal">
     @foreach (var category in Model)
     {
-        <li class="mb-2"><a class="reset-anchor" href="#">@category.Name (@category.ProductCount)</a></li>
+        <li class="mb-2">
+            <a class="reset-anchor" asp-controller="Category" asp-action="Index" asp-route-Id="@category.Id">@category.Name (@category.ProductCount)</a>
+        </li>
     }
 </ul>
 @*<div class="py-2 px-4 bg-light mb-3"><strong class="small text-uppercase font-weight-bold">Health &amp; Beauty</strong></div>

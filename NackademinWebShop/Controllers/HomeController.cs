@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NackademinWebShop.Services.CategoryServices;
-using NackademinWebShop.ViewModels.Category;
 
 namespace NackademinWebShop.Controllers
 {

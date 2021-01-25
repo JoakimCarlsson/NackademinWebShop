@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace NackademinWebShop.ViewModels.Category
+﻿namespace NackademinWebShop.ViewModels.Categories
 {
     public class CategoryIndexViewModel
     {

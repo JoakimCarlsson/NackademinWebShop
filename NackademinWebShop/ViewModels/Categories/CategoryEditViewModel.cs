@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace NackademinWebShop.ViewModels.Category
+namespace NackademinWebShop.ViewModels.Categories
 {
     public class CategoryEditViewModel
     {
