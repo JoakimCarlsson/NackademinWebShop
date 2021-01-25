@@ -48,6 +48,8 @@ namespace NackademinWebShop.Data
         private static void SeedCategories(ApplicationDbContext applicationDbContext)
         {
             AddNewCategory(applicationDbContext, "Mobile");
+            AddNewCategory(applicationDbContext, "USB Flash drives");
+            AddNewCategory(applicationDbContext, "Headphones");
         }
 
         private static void AddNewCategory(ApplicationDbContext applicationDbContext, string name)
