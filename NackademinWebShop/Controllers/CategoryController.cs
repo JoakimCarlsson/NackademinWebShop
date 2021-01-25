@@ -29,7 +29,25 @@ namespace NackademinWebShop.Controllers
             if (ModelState.IsValid)
             {
                 _categoryServices.Create(model);
-                RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var model = _categoryServices.GetById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _categoryServices.Update(model); 
+                return RedirectToAction("Index", "Home");
             }
 
             return View(model);

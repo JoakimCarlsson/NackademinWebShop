@@ -15,6 +15,8 @@ namespace NackademinWebShop.Mappings
             CreateMap<Category, CategoryIndexViewModel>();
             CreateMap<CategoryIndexViewModel, Category>();
             CreateMap<CategoryCreateViewModel, Category>();
+            CreateMap<CategoryEditViewModel, Category>();
+            CreateMap<Category, CategoryEditViewModel>();
         }
     }
 }

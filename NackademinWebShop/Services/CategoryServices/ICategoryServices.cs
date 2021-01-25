@@ -7,5 +7,7 @@ namespace NackademinWebShop.Services.CategoryServices
     {
         IEnumerable<CategoryIndexViewModel> GetAll(bool includeEmpty);
         void Create(CategoryCreateViewModel model);
+        CategoryEditViewModel GetById(int id);
+        void Update(CategoryEditViewModel model);
     }
 }
