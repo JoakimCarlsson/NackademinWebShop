@@ -15,7 +15,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using NackademinWebShop.Repository.CategoryRepository;
+using NackademinWebShop.Repository.ProductRepository;
 using NackademinWebShop.Services.CategoryServices;
+using NackademinWebShop.Services.ProductService;
 
 namespace NackademinWebShop
 {
@@ -34,6 +36,8 @@ namespace NackademinWebShop
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddAutoMapper(typeof(Startup)); //Auto mapper
+            services.AddTransient<IProductServices, ProductService>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryServices, CategoryServices>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();

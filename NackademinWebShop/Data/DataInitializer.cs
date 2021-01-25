@@ -26,7 +26,10 @@ namespace NackademinWebShop.Data
             AddNewProduct(applicationDbContext, "OnePlus Nord N100", "En SKIT STOR telefon", "Mobile", 8756.99m);
             AddNewProduct(applicationDbContext, "OnePlus Nord N10 5G", "En asdfasdfasdf telefon", "Mobile", 7942.99m);
             AddNewProduct(applicationDbContext, "OnePlus 7T", "En stor telefonasdfasdfasdfasdfasfd", "Mobile", 9678.99m);
-            AddNewProduct(applicationDbContext, "Xiaomi Poco X3", "En stor telefon asdf asdf asdf asdf ", "Mobile", 15049.99m);
+            AddNewProduct(applicationDbContext, "Xiaomi Poco X3", "En stor telefon asdf asdf asdf asdf ", "Mobile", 15049.99m); //USB Flash drives
+            AddNewProduct(applicationDbContext, "Kingston DataTraveler G3", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99); //USB Flash drives
+            AddNewProduct(applicationDbContext, "Kingston DataTraveler 80", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 499); //USB Flash drives
+            AddNewProduct(applicationDbContext, "SanDisk UltraFit", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99); //USB Flash drives
         }
 
         private static void AddNewProduct(ApplicationDbContext applicationDbContext, string name, string description, string categoryName, decimal price)
