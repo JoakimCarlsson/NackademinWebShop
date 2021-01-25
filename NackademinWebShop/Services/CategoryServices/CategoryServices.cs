@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
 using NackademinWebShop.ViewModels.Category;
 
@@ -21,11 +22,18 @@ namespace NackademinWebShop.Services.CategoryServices
 
         public IEnumerable<CategoryIndexViewModel> GetAll(bool includeEmpty)
         {
-            var temp = _mapper.Map<IEnumerable<CategoryIndexViewModel>>(_categoryRepository.GetAll(includeEmpty));
-            foreach (var categoryIndexViewModel in temp)
+            var indexViewModels = _mapper.Map<IEnumerable<CategoryIndexViewModel>>(_categoryRepository.GetAll(includeEmpty));
+
+            foreach (var categoryIndexViewModel in indexViewModels)
                 categoryIndexViewModel.ProductCount = GetProductsCountById(categoryIndexViewModel.Id);
 
-            return temp;
+            return indexViewModels;
+        }
+
+        public void Create(CategoryCreateViewModel model)
+        {
+            Category category = _mapper.Map<Category>(model);
+            _categoryRepository.Create(category);
         }
 
         public int GetProductsCountById(int id)

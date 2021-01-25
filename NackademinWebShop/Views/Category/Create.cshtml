@@ -1,0 +1,17 @@
+﻿@model NackademinWebShop.ViewModels.Category.CategoryCreateViewModel
+
+@{
+    ViewData["Title"] = "Create New Category";
+}
+
+<form method="post" asp-controller="Category" asp-action="Create">
+    <div class="row">
+        <div class="col-lg-12">
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            <input asp-for="Name" type="text" placeholder="Category Name">
+        </div>
+        <div class="col-lg-12">
+            <button type="submit" class="btn-primary">Save</button>
+        </div>
+    </div>
+</form>

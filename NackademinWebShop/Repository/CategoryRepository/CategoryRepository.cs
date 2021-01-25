@@ -38,5 +38,11 @@ namespace NackademinWebShop.Repository.CategoryRepository
             _applicationDbContext.Categories.Remove(category);
             _applicationDbContext.SaveChanges();
         }
+
+        public void Create(Category category)
+        {
+            _applicationDbContext.Categories.Add(category);
+            _applicationDbContext.SaveChanges();
+        }
     }
 }

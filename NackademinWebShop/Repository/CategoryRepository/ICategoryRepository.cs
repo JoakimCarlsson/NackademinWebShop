@@ -9,5 +9,6 @@ namespace NackademinWebShop.Repository.CategoryRepository
         Category GetById(int id);
         void Update(Category category);
         void Delete(Category category);
+        void Create(Category category);
     }
 }
