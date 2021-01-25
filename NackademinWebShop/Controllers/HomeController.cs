@@ -14,18 +14,15 @@ namespace NackademinWebShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ICategoryServices _categoryServices;
 
-        public HomeController(ILogger<HomeController> logger, ICategoryServices categoryServices)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _categoryServices = categoryServices;
         }
 
         public IActionResult Index()
         {
-            var model = _categoryServices.GetAll(true);
-            return View(model);
+            return View();
         }
 
         public IActionResult Privacy()

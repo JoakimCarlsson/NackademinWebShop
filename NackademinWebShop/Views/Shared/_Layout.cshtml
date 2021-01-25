@@ -18,38 +18,47 @@
     @*<link rel="stylesheet" href="~/css/custom.css">*@
 </head>
 <body>
-<header class="header bg-white">
-    <div class="container px-0 px-lg-3">
-        <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span class="font-weight-bold text-uppercase text-dark">Nakademin Web Shop</span></a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    @*<li class="nav-item dropdown">
+    <header class="header bg-white">
+        <div class="container px-0 px-lg-3">
+            <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><span class="font-weight-bold text-uppercase text-dark">Nakademin Web Shop</span></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @*<li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                 <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
                             </li>*@
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <partial name="_LoginPartial" />
-                    @*<li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>*@
-                </ul>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <hr />
+    <section class="py-5">
+
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-lg-3 order-2 order-lg-1">
+                    @await Component.InvokeAsync("Categories")
+                </div>
+                <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
+                    <div class="row mb-3 align-items-center">
+                        @RenderBody()
+                    </div>
+                </div>
             </div>
-        </nav>
-    </div>
-</header>
-    <hr/>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        </div>
+    </section>
 
     <footer class="border-top footer text-muted">
         <div class="container">
