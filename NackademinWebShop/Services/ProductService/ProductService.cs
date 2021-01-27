@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using NackademinWebShop.Models;
 using NackademinWebShop.Repository.ProductRepository;
+using NackademinWebShop.ViewModels.Admin.Product;
 using NackademinWebShop.ViewModels.Products;
 
 namespace NackademinWebShop.Services.ProductService
@@ -18,6 +21,18 @@ namespace NackademinWebShop.Services.ProductService
         public ProductIndexViewModel Get(int id)
         {
             return _mapper.Map<ProductIndexViewModel>(_productRepository.Get(id));
+        }
+
+        public List<AdminProductViewModel> GetAll()
+        {
+            List<AdminProductViewModel> test = new List<AdminProductViewModel>();
+            foreach (Product product in _productRepository.GetAll())
+            {
+                var tmp = _mapper.Map<AdminProductViewModel>(product);
+                test.Add(tmp);
+            }
+
+            return test;
         }
     }
 }

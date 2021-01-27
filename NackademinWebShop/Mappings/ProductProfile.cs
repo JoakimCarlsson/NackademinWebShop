@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using NackademinWebShop.Models;
+using NackademinWebShop.ViewModels.Admin.Product;
 using NackademinWebShop.ViewModels.Products;
 
 namespace NackademinWebShop.Mappings
@@ -14,6 +15,7 @@ namespace NackademinWebShop.Mappings
         {
             CreateMap<ProductIndexViewModel, Product>();
             CreateMap<Product, ProductIndexViewModel>();
+            CreateMap<Product, AdminProductViewModel>();
         }
     }
 }

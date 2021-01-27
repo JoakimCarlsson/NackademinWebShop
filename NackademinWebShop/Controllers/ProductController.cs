@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NackademinWebShop.Services.ProductService;
+using NackademinWebShop.ViewModels.Admin.Product;
 using NackademinWebShop.ViewModels.Products;
 
 namespace NackademinWebShop.Controllers
@@ -19,6 +21,16 @@ namespace NackademinWebShop.Controllers
         public IActionResult Index(int id)
         {
             var model = _productServices.Get(id);
+            return View(model);
+        }
+
+        [Authorize(Roles = "Administrator,Product Manager")]
+        public IActionResult GetAll()
+        {
+            var model = new AdminProductListViewModel
+            {
+                Products = _productServices.GetAll()
+            };
             return View(model);
         }
     }
