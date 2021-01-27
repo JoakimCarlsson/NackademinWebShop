@@ -1,7 +1,7 @@
-﻿@model NackademinWebShop.ViewModels.Admin.Product.AdminProductEditViewModel
+﻿@model NackademinWebShop.ViewModels.Admin.Product.AdminProductCreateViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "_AdministrationLayout";
 }
 @* TODO make me look better. *@
@@ -11,25 +11,25 @@
             <h3 class="h4">Edit</h3>
         </div>
         <div class="card-body">
-            <form method="post" asp-controller="Product" asp-action="Edit">
+            <form method="post" asp-controller="Product" asp-action="Create">
                 <div class="form-group">
                     <label asp-for="Name">Name</label>
                     <input class="form-control" asp-for="Name">
                     <span asp-validation-for="Name" class="field-validation-error"></span>
                 </div>
-                
+
                 <div class="form-group">
                     <label asp-for="Description">Comment</label>
-                    <textarea rows="5" cols="30"class="form-control" asp-for="Description"></textarea>
+                    <textarea rows="5" cols="30" class="form-control" asp-for="Description"></textarea>
                     <span asp-validation-for="Description" class="field-validation-error"></span>
                 </div>
-                
+
                 <div class="form-group">
                     <label asp-for="Price">Price</label>
                     <input class="form-control" asp-for="Price">
                     <span asp-validation-for="Price" class="invalid-feedback"></span>
                 </div>
-                
+
                 <div class="form-group">
                     <label asp-for="CategoryId">Category</label>
                     <select class="form-control mb-3" asp-for="CategoryId" asp-items="Model.Categories"></select>

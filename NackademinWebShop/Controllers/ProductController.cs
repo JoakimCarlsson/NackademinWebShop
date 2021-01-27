@@ -54,5 +54,26 @@ namespace NackademinWebShop.Controllers
             model.Categories = _productServices.GetCategoriesList();
             return View(model);
         }
+
+        [Authorize(Roles = "Administrator,Product Manager")]
+        public IActionResult Create()
+        {
+            var model = new AdminProductCreateViewModel {Categories = _productServices.GetCategoriesList()};
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator,Product Manager")]
+        public IActionResult Create(AdminProductCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _productServices.Create(model);
+                return RedirectToAction("GetAll");
+            }
+
+            model.Categories = _productServices.GetCategoriesList();
+            return View(model);
+        }
     }
 }

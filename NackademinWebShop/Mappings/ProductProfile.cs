@@ -16,6 +16,8 @@ namespace NackademinWebShop.Mappings
             CreateMap<ProductIndexViewModel, Product>();
             CreateMap<Product, ProductIndexViewModel>();
             CreateMap<Product, AdminProductViewModel>();
+            CreateMap<Product, AdminProductCreateViewModel>();
+            CreateMap<AdminProductCreateViewModel, Product>();
             CreateMap<Product, AdminProductEditViewModel>().ForMember(p => p.CategoryId,
                 opt => opt.MapFrom(s => s.Category.Id));
             CreateMap<AdminProductEditViewModel, Product>();

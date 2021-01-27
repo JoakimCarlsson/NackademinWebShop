@@ -30,5 +30,11 @@ namespace NackademinWebShop.Repository.ProductRepository
             _applicationDbContext.Products.Update(product);
             _applicationDbContext.SaveChanges();
         }
+
+        public void Create(Product product)
+        {
+            _applicationDbContext.Products.Add(product);
+            _applicationDbContext.SaveChanges();
+        }
     }
 }

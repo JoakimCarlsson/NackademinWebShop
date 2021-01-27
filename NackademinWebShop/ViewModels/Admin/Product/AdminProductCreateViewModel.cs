@@ -7,10 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NackademinWebShop.ViewModels.Admin.Product
 {
-    public class AdminProductEditViewModel
+    public class AdminProductCreateViewModel
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "You have too enter a name")]
         [StringLength(25, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 30.")]
         public string Name { get; set; }

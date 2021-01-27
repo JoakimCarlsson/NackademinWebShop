@@ -12,5 +12,6 @@ namespace NackademinWebShop.Services.ProductService
         AdminProductEditViewModel GetEdit(int id);
         public List<SelectListItem> GetCategoriesList();
         public void Update(AdminProductEditViewModel model);
+        public void Create(AdminProductCreateViewModel model);
     }
 }

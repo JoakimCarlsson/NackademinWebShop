@@ -66,5 +66,12 @@ namespace NackademinWebShop.Services.ProductService
             product.Category = _categoryRepository.GetById(model.Id);
             _productRepository.Update(product);
         }
+
+        public void Create(AdminProductCreateViewModel model)
+        {
+            var product = _mapper.Map<Product>(model);
+            product.Category = _categoryRepository.GetById(model.CategoryId);
+            _productRepository.Create(product);
+        }
     }
 }
