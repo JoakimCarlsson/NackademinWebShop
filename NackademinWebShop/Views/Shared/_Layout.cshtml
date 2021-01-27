@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/style.default.css" id="theme-stylesheet">
-    @*<link rel="stylesheet" href="~/css/custom.css">*@
 </head>
 <body>
     <header class="header bg-white">
@@ -30,7 +29,7 @@
                         @if (User.IsInRole("Product Manager") || User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Administration</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="Index">Administration</a>
                             </li>
                         }
                         @*<li class="nav-item dropdown">

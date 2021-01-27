@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NackademinWebShop.Services.CategoryServices;
 using NackademinWebShop.ViewModels.Categories;
@@ -30,6 +31,7 @@ namespace NackademinWebShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Create(CategoryCreateViewModel model)
         {
             if (ModelState.IsValid)
@@ -42,6 +44,7 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Edit(int id)
         {
             var model = _categoryServices.GetById(id);
@@ -49,6 +52,7 @@ namespace NackademinWebShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Edit(CategoryEditViewModel model)
         {
             if (ModelState.IsValid)
@@ -60,6 +64,7 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Delete(int id)
         {
            //todo we need too implement a check, so we do not delete categories that have products in them.

@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NackademinWebShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/admin.css">
+    <link rel="stylesheet" href="~/css/fontastic.css">
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-holder d-flex align-items-center justify-content-between">
+                        <!-- Navbar Header-->
+                        <div class="navbar-header">
+                            <!-- Navbar Brand -->
+                            <a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                                <div class="brand-text d-none d-lg-inline-block"><span>Nackademin WebShop </span><strong>Dashboard</strong></div>
+                            </a>
+                        </div>
+                        <!-- Navbar Menu -->
+                        <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+
+                            <li class="nav-item">
+                                <form class="nav-link logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button type="submit" class="btn btn-group" style="color: white"><span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="page-content d-flex align-items-stretch">
+            <nav class="side-navbar">
+                <!-- Sidebar Header-->
+                <div class="sidebar-header d-flex align-items-center">
+                    <div class="title">
+                        <h1 class="h4">@* TODO ADD USERNAME HERE *@Joakim Carlsson</h1>
+                        <p>@* TODO ADD ROLE HERE *@Administrator</p>
+                    </div>
+                </div>
+                <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+                <ul class="list-unstyled">
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index"> <i class="icon-home"></i>Home </a></li>
+                    <li><a href="tables.html"> <i class="icon-grid"></i>Products </a></li>
+                    <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Categories </a></li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a href="forms.html"> <i class="icon-padnote"></i>Users </a></li>
+                    }
+                </ul>
+            </nav>
+            <div class="content-inner">
+                @RenderBody()
+            </div>
+            <footer class="main-footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>Your company &copy; 2017-2020</p>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            &copy; 2021 - NackademinWebShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/lightbox2/js/lightbox.min.js"></script>
+    <script src="~/lib/nouislider/nouislider.min.js"></script>
+    <script src="~/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="~/lib/owl.carousel2/owl.carousel.min.js"></script>
+    <script src="~/lib/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
