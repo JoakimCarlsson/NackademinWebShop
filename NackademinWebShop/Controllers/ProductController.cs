@@ -33,5 +33,26 @@ namespace NackademinWebShop.Controllers
             };
             return View(model);
         }
+
+        [Authorize(Roles = "Administrator,Product Manager")]
+        public IActionResult Edit(int id)
+        {
+            var model = _productServices.GetEdit(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator,Product Manager")]
+        public IActionResult Edit(AdminProductEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _productServices.Update(model);
+                return RedirectToAction("GetAll");
+            }
+
+            model.Categories = _productServices.GetCategoriesList();
+            return View(model);
+        }
     }
 }

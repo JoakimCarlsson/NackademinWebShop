@@ -37,10 +37,10 @@ namespace NackademinWebShop
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAutoMapper(typeof(Startup)); //Auto mapper
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductServices, ProductService>();
-            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryServices, CategoryServices>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddControllersWithViews();

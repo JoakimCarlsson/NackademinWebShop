@@ -17,12 +17,18 @@ namespace NackademinWebShop.Repository.ProductRepository
 
         public Product Get(int id)
         {
-            return _applicationDbContext.Products.FirstOrDefault(i => i.Id == id);
+            return _applicationDbContext.Products.Include(c => c.Category).FirstOrDefault(i => i.Id == id);
         }
 
         public IEnumerable<Product> GetAll()
         {
             return _applicationDbContext.Products.Include(c => c.Category);
+        }
+
+        public void Update(Product product)
+        {
+            _applicationDbContext.Products.Update(product);
+            _applicationDbContext.SaveChanges();
         }
     }
 }
