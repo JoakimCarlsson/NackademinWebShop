@@ -9,5 +9,6 @@ namespace NackademinWebShop.Repository.ProductRepository
         IEnumerable<Product> GetAll();
         void Update(Product product);
         void Create(Product product);
+        void Delete(int id);
     }
 }

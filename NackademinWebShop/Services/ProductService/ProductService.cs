@@ -73,5 +73,10 @@ namespace NackademinWebShop.Services.ProductService
             product.Category = _categoryRepository.GetById(model.CategoryId);
             _productRepository.Create(product);
         }
+
+        public void Delete(int id)
+        {
+            _productRepository.Delete(id);
+        }
     }
 }

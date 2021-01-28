@@ -58,7 +58,7 @@ namespace NackademinWebShop.Controllers
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Create()
         {
-            var model = new AdminProductCreateViewModel {Categories = _productServices.GetCategoriesList()};
+            var model = new AdminProductCreateViewModel { Categories = _productServices.GetCategoriesList() };
             return View(model);
         }
 
@@ -74,6 +74,13 @@ namespace NackademinWebShop.Controllers
 
             model.Categories = _productServices.GetCategoriesList();
             return View(model);
+        }
+
+        [Authorize(Roles = "Administrator,Product Manager")]//TODO WE SHOULD FIX THIS :)
+        public IActionResult Delete(int id)
+        {
+            _productServices.Delete(id);
+            return RedirectToAction("GetAll");
         }
     }
 }

@@ -36,5 +36,13 @@ namespace NackademinWebShop.Repository.ProductRepository
             _applicationDbContext.Products.Add(product);
             _applicationDbContext.SaveChanges();
         }
+
+        public void Delete(int id)
+        {
+            //TODO WE CAN MAKE THIS LOOK BETTER PROBABLY
+            var product = _applicationDbContext.Products.FirstOrDefault(p => p.Id == id);
+            _applicationDbContext.Products.Remove(product);
+            _applicationDbContext.SaveChanges();
+        }
     }
 }
