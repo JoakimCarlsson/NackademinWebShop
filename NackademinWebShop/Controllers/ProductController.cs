@@ -18,7 +18,7 @@ namespace NackademinWebShop.Controllers
         {
             _productServices = productServices;
         }
-        public IActionResult Index(int id)
+        public IActionResult Detail(int id)
         {
             var model = _productServices.Get(id);
             return View(model);

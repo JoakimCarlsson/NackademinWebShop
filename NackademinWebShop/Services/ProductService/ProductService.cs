@@ -40,6 +40,12 @@ namespace NackademinWebShop.Services.ProductService
             return test;
         }
 
+        public List<ProductIndexViewModel> GetSearchResult(string query)
+        {
+            var products = _productRepository.GetAll();
+            return _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null||i.Name.Contains(query) || i.Description.Contains(query)).ToList());
+        }
+
         public AdminProductEditViewModel GetEdit(int id)
         {
             var model = _mapper.Map<AdminProductEditViewModel>(_productRepository.Get(id));

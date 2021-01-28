@@ -7,21 +7,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NackademinWebShop.Services.CategoryServices;
+using NackademinWebShop.Services.ProductService;
+using NackademinWebShop.ViewModels.Products;
 
 namespace NackademinWebShop.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductServices _productServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductServices productServices)
         {
             _logger = logger;
+            _productServices = productServices;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            return View();
+            var model = new ProductListIndexViewModel {Products = _productServices.GetSearchResult(search)};
+            return View(model);
         }
 
         public IActionResult Privacy()

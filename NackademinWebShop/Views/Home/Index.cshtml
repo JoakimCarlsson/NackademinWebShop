@@ -1,5 +1,27 @@
-﻿@{
+﻿@model NackademinWebShop.ViewModels.Products.ProductListIndexViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
+<div class="col-lg-6 mb-2 mb-lg-0">
+    <p class="text-small text-muted mb-0">Showing 1–12 of 53 results</p>
+</div>
 
-<h2>This is my index. Not sure what we should do here right now.</h2>
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-lg-4 col-sm-6">
+            <div class="product text-center">
+                <div class="mb-3 position-relative">
+                    <div class="badge text-white badge-">
+                    </div><a class="d-block" asp-controller="Product" asp-action="Detail" asp-route-Id="@product.Id"><img class="img-fluid w-100" src="~/img/product-1.jpg" alt="..."></a>
+                </div>
+                <h6>
+
+                    <a class="reset-anchor" asp-controller="Product" asp-action="Detail" asp-route-Id="@product.Id">@product.Name</a>
+                </h6>
+                <p class="small text-muted">@product.Price</p>
+            </div>
+        </div>
+    }
+</div>
