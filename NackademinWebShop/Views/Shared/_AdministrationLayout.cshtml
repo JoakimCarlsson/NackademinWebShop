@@ -20,9 +20,7 @@
                         <!-- Navbar Header-->
                         <div class="navbar-header">
                             <!-- Navbar Brand -->
-                            <a href="index.html" class="navbar-brand d-none d-sm-inline-block">
-                                <div class="brand-text d-none d-lg-inline-block"><strong>Dashboard</strong></div>
-                            </a>
+                            <div class="brand-text d-none d-lg-inline-block"><strong>Dashboard</strong></div>
                         </div>
                         <!-- Navbar Menu -->
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
@@ -48,7 +46,7 @@
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
                 <ul class="list-unstyled">
-                    <li class="active"><a asp-area="" asp-controller="Administration" asp-action="Index"> <i class="icon-home"></i>Home </a></li>
+                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index"> <i class="icon-home"></i>Back To Shop</a></li>
                     <li><a asp-area="" asp-controller="Product" asp-action="GetAll"> <i class="icon-home"></i>Products </a></li>
                     <li><a asp-area="" asp-controller="Category" asp-action="GetAll"> <i class="icon-home"></i>Categories </a></li>
                     @if (User.IsInRole("Administrator"))
