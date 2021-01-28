@@ -1,0 +1,42 @@
+﻿@model NackademinWebShop.ViewModels.Admin.Category.AdminCategoryListViewModel
+
+@{
+    ViewBag.Title = "All Categories";
+    Layout = "_AdministrationLayout";
+}
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Products</h3>
+        </div>
+        <div class="card-body">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary" role="button" aria-pressed="true">Create</a><br /><br />
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Total Products</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in @Model.Categories)
+                        {
+                        <tr>
+                            <th scope="row">@product.Id</th>
+                            <td>@product.Name</td>
+                            <td>@product.ProductCount</td>
+                            <td><a asp-controller="Category" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
+                            <td><a asp-controller="Category" asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger" role="button" aria-pressed="true">Delete</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

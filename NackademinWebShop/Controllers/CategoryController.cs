@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NackademinWebShop.Services.CategoryServices;
+using NackademinWebShop.ViewModels.Admin.Category;
 using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.Controllers
@@ -24,21 +25,22 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Create()
         {
-            CategoryCreateViewModel model = new CategoryCreateViewModel();
+            AdminCategoryCreateViewModel model = new AdminCategoryCreateViewModel();
             return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Administrator,Product Manager")]
-        public IActionResult Create(CategoryCreateViewModel model)
+        public IActionResult Create(AdminCategoryCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 _categoryServices.Create(model);
                 return RedirectToAction("Index", "Home");
-                //ModelState.AddModelError();
+                //ModelState.AddModelError(); //TODO FIX ME. :')
             }
 
             return View(model);
@@ -53,12 +55,12 @@ namespace NackademinWebShop.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator,Product Manager")]
-        public IActionResult Edit(CategoryEditViewModel model)
+        public IActionResult Edit(AdminCategoryEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _categoryServices.Update(model); 
-                return RedirectToAction("Index", "Home");
+                _categoryServices.Update(model);
+                return RedirectToAction("GetAll");
             }
 
             return View(model);
@@ -67,9 +69,16 @@ namespace NackademinWebShop.Controllers
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Delete(int id)
         {
-           //todo we need too implement a check, so we do not delete categories that have products in them.
+           //todo we need too implement a check, so we do not delete categories that have products in them. which not should be possible.
+           //but still.
             _categoryServices.Delete(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetAll");
+        }
+
+        public IActionResult GetAll()
+        {
+            var model = new AdminCategoryListViewModel {Categories = _categoryServices.GetAll(true)};
+            return View(model);
         }
     }
 }

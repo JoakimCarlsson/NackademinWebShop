@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
+using NackademinWebShop.ViewModels.Admin.Category;
 using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.Services.CategoryServices
@@ -30,18 +31,18 @@ namespace NackademinWebShop.Services.CategoryServices
             return indexViewModels;
         }
 
-        public void Create(CategoryCreateViewModel model)
+        public void Create(AdminCategoryCreateViewModel model)
         {
             Category category = _mapper.Map<Category>(model);
             _categoryRepository.Create(category);
         }
 
-        public CategoryEditViewModel GetById(int id)
+        public AdminCategoryEditViewModel GetById(int id)
         {
             Category category = _categoryRepository.GetById(id); //Todo, check if null.
             //but this should never be null, but still good to check.
 
-            var categoryEditViewModel = _mapper.Map<CategoryEditViewModel>(category);
+            var categoryEditViewModel = _mapper.Map<AdminCategoryEditViewModel>(category);
             return categoryEditViewModel;
         }
 
@@ -50,7 +51,7 @@ namespace NackademinWebShop.Services.CategoryServices
             return _mapper.Map<CategoryListIndexViewModel>(_categoryRepository.GetById(id));
         }
 
-        public void Update(CategoryEditViewModel model)
+        public void Update(AdminCategoryEditViewModel model)
         {
             Category category = _mapper.Map<Category>(model);
             _categoryRepository.Update(category);

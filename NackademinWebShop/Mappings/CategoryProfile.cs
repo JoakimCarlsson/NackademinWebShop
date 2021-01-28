@@ -14,14 +14,14 @@ namespace NackademinWebShop.Mappings
         public CategoryProfile()
         {
             CreateMap<Category, CategoryIndexViewModel>();
+            CreateMap<Category, AdminCategoryViewModel>();
             CreateMap<CategoryIndexViewModel, Category>();
-            CreateMap<CategoryCreateViewModel, Category>();
-            CreateMap<CategoryEditViewModel, Category>();
-            CreateMap<Category, CategoryEditViewModel>();
+            CreateMap<AdminCategoryCreateViewModel, Category>();
+            CreateMap<AdminCategoryEditViewModel, Category>();
+            CreateMap<Category, AdminCategoryEditViewModel>();
             CreateMap<Category, CategoryListIndexViewModel>();
             CreateMap<Category, AdminCategoryViewModel>();
             CreateMap<AdminCategoryViewModel, Category>();
-
         }
     }
 }
