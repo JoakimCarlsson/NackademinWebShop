@@ -39,8 +39,8 @@ namespace NackademinWebShop
             services.AddAutoMapper(typeof(Startup)); //Auto mapper
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddTransient<IProductServices, ProductService>();
-            services.AddTransient<ICategoryServices, CategoryServices>();
+            services.AddScoped<IProductServices, ProductService>();
+            services.AddScoped<ICategoryServices, CategoryServices>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddControllersWithViews();

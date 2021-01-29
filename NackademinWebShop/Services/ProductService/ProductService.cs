@@ -40,10 +40,19 @@ namespace NackademinWebShop.Services.ProductService
             return test;
         }
 
-        public List<ProductIndexViewModel> GetSearchResult(string query)
+        public List<ProductIndexViewModel> GetSearchResult(string query, string sortOrder)
         {
             var products = _productRepository.GetAll();
-            return _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null||i.Name.Contains(query) || i.Description.Contains(query)).ToList());
+            var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null||i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
+
+            string test = query;
+
+            if (sortOrder == "asc")
+                return model.OrderBy(p => p.Price).ToList();
+            if (sortOrder == "desc")
+                return model.OrderByDescending(p => p.Price).ToList();
+
+            return model;
         }
 
         public AdminProductEditViewModel GetEdit(int id)

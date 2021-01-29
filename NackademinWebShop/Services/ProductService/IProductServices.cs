@@ -9,7 +9,7 @@ namespace NackademinWebShop.Services.ProductService
     {
         ProductIndexViewModel Get(int id);
         List<AdminProductViewModel> GetAll();
-        List<ProductIndexViewModel> GetSearchResult(string query);
+        List<ProductIndexViewModel> GetSearchResult(string query, string searchOrder);
         AdminProductEditViewModel GetEdit(int id);
         public List<SelectListItem> GetCategoriesList();
         public void Update(AdminProductEditViewModel model);
