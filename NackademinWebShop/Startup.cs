@@ -41,6 +41,7 @@ namespace NackademinWebShop
             services.AddAutoMapper(typeof(Startup)); //Auto mapper
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddHttpContextAccessor();
 
             services.AddScoped<IProductServices, ProductService>();
             services.AddScoped<ICategoryServices, CategoryServices>();
