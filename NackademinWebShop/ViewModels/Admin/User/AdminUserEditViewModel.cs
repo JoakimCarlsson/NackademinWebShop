@@ -6,7 +6,7 @@ using NackademinWebShop.ViewModels.Admin.UserRole;
 
 namespace NackademinWebShop.ViewModels.Admin.User
 {
-    public class AdminUserViewModel
+    public class AdminUserEditViewModel
     {
         public string Id { get; set; }
         public string Email { get; set; }

@@ -59,5 +59,14 @@ namespace NackademinWebShop.Controllers
             }
             return View(model);
         }
+
+        //TODO FIX ME:
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = _userManager.Users.FirstOrDefault(p => p.Id == id);
+            var result = await _userManager.DeleteAsync(user);
+
+            return RedirectToAction("GetAll");
+        }
     }
 }
