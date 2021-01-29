@@ -76,5 +76,30 @@ namespace NackademinWebShop.Controllers
 
             return RedirectToAction("GetAll");
         }
+
+        public IActionResult Edit(string id)
+        {
+            var model = new AdminUserEditViewModel();
+            var user = _userManager.Users.FirstOrDefault(i => i.Id == id);
+
+            model.Email = user.Email;
+            model.Id = user.Id;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(AdminUserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.Users.FirstOrDefault(i => i.Id == model.Id);
+                await _userManager.SetEmailAsync(user, model.Email);
+                await _userManager.SetUserNameAsync(user, model.Email);
+                return RedirectToAction("GetAll");
+            }
+
+            return View(model);
+        }
     }
 }
