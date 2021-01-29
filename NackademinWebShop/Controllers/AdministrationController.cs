@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NackademinWebShop.Controllers
 {
+    [Authorize(Roles = "Administrator,Product Manager")]
     public class AdministrationController : Controller
     {
-        [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Index()
         {
             return View();

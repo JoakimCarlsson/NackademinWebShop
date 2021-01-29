@@ -27,7 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li>
-                            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" asp-controller="Home"asp-action="Index" method="get">
+                            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" asp-controller="Home" asp-action="Index" method="get">
                                 <div class="input-group">
                                     <input type="search" class="form-control bg-light border-0 small" placeholder="Search" aria-label="Search" name="search">
                                     <div class="input-group-append">
@@ -84,7 +84,7 @@
                         @await Component.InvokeAsync("Categories")
                     </div>
                     <div class="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
-                            @RenderBody()
+                        @RenderBody()
                     </div>
                 </div>
             </div>
@@ -105,7 +105,8 @@
     <script src="~/lib/owl.carousel2/owl.carousel.min.js"></script>
     <script src="~/lib/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

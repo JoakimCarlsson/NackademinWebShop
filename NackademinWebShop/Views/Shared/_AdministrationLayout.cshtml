@@ -51,7 +51,7 @@
                     <li><a asp-area="" asp-controller="Category" asp-action="GetAll"> <i class="icon-home"></i>Categories </a></li>
                     @if (User.IsInRole("Administrator"))
                     {
-                        <li><a href="forms.html"> <i class="icon-padnote"></i>Users </a></li>
+                        <li><a asp-area="" asp-controller="User" asp-action="GetAll"> <i class="icon-home"></i>Users</a></li>
                     }
                 </ul>
             </nav>
@@ -82,7 +82,8 @@
     <script src="~/lib/owl.carousel2/owl.carousel.min.js"></script>
     <script src="~/lib/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

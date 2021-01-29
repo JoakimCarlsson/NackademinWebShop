@@ -14,10 +14,12 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using NackademinWebShop.Repository.CategoryRepository;
 using NackademinWebShop.Repository.ProductRepository;
 using NackademinWebShop.Services.CategoryServices;
 using NackademinWebShop.Services.ProductService;
+using NackademinWebShop.Services.UserService;
 
 namespace NackademinWebShop
 {
@@ -39,8 +41,13 @@ namespace NackademinWebShop
             services.AddAutoMapper(typeof(Startup)); //Auto mapper
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
             services.AddScoped<IProductServices, ProductService>();
             services.AddScoped<ICategoryServices, CategoryServices>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddControllersWithViews();
