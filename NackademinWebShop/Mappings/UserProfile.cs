@@ -12,8 +12,9 @@ namespace NackademinWebShop.Mappings
     {
         public UserProfile()
         {
-               CreateMap<IdentityUser, AdminUserViewModel>();
-               CreateMap<AdminUserViewModel, IdentityUser>();
+            CreateMap<IdentityUser, AdminUserViewModel>();
+            CreateMap<IdentityUser, AdminUserViewModel>();
+            CreateMap<AdminUserViewModel, IdentityUser>();
         }
     }
 }

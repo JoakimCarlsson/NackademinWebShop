@@ -12,6 +12,6 @@ namespace NackademinWebShop.ViewModels.Admin.User
         public string Id { get; set; }
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public AdminUserRoleViewModel Role { get; set; }
+        public List<AdminUserRoleViewModel> Roles { get; set; }
     }
 }

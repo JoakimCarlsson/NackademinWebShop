@@ -19,5 +19,7 @@ namespace NackademinWebShop.ViewModels.Admin.User
 
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public List<string> Roles { get; set; }
     }
 }

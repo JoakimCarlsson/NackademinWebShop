@@ -89,6 +89,7 @@ namespace NackademinWebShop.Data
         {
             AddNewRole(roleManager, "Administrator");
             AddNewRole(roleManager, "Product Manager");
+            AddNewRole(roleManager, "User");
         }
 
         private static void AddNewRole(RoleManager<IdentityRole> roleManager, string roleName)

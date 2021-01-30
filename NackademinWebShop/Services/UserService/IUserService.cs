@@ -39,6 +39,7 @@ namespace NackademinWebShop.Services.UserService
             foreach (IdentityUser user in _userManager.Users)
             {
                 users.Add(_mapper.Map<AdminUserViewModel>(user));
+                var roles = _userManager.GetRolesAsync(user);
             }
 
             return users;

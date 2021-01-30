@@ -20,20 +20,22 @@
                             <th>ID</th>
                             <th>Email</th>
                             <th>Email Confirmed</th>
-                            @*<th></th>
-                        <th></th>*@
+                            <th>Roles</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var product in @Model.Users)
                         {
-                            <tr>
-                                <th scope="row">@product.Id</th>
-                                <th>@product.Email</th>
-                                <th>@product.EmailConfirmed</th>
-                                <td><a asp-controller="User" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
-                                <td><a asp-controller="User" asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger" role="button" aria-pressed="true">Delete</a></td>
-                            </tr>
+                        <tr>
+                            <th scope="row">@product.Id</th>
+                            <th>@product.Email</th>
+                            <th>@product.EmailConfirmed</th>
+                            <th>@foreach(var role in product.Roles){<a>@role.Name, </a>}</th>
+                            <td><a asp-controller="User" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
+                            <td><a asp-controller="User" asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger" role="button" aria-pressed="true">Delete</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>
