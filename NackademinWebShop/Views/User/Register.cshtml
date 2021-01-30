@@ -37,6 +37,7 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Roles">CurrentAllRoles</label>
                     <select class="form-control mb-3" size="@Model.Roles.Count" multiple aria-label="multiple select example" name="roles">
                         @foreach (var role in @Model.Roles)
                         {

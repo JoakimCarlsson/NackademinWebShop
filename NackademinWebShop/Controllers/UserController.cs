@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NackademinWebShop.Data;
 using NackademinWebShop.Services.UserService;
 using NackademinWebShop.ViewModels.Admin.User;
@@ -67,7 +68,6 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
-        //todo fix me
         public async Task<IActionResult> Delete(string id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -104,7 +104,6 @@ namespace NackademinWebShop.Controllers
             }
 
             model.Users = users;
-            //return users;
             return View(model);
         }
 
@@ -114,14 +113,9 @@ namespace NackademinWebShop.Controllers
             var user = _userManager.Users.FirstOrDefault(i => i.Id == id);
             model.Email = user.Email;
             model.Id = user.Id;
-            model.Roles = new List<AdminUserRoleViewModel>();
 
-            var roles = await _userManager.GetRolesAsync(user);
-
-            foreach (string role in roles)
-            {
-                model.Roles.Add(new AdminUserRoleViewModel { Name = role });
-            }
+            var activeRoles = await _userManager.GetRolesAsync(user);
+            model.AllRoles = GetAllRoles((List<string>) activeRoles);
 
             return View(model);
         }
@@ -132,15 +126,33 @@ namespace NackademinWebShop.Controllers
             if (ModelState.IsValid)
             {
                 var user = _userManager.Users.FirstOrDefault(i => i.Id == model.Id);
+
+                await _userManager.RemoveFromRolesAsync(user, _dbContext.Roles.Select(n => n.Name));
+                await _userManager.AddToRolesAsync(user, model.CurrentRoles);
+
                 user.EmailConfirmed = true;
                 await _userManager.SetEmailAsync(user, model.Email);
                 await _userManager.SetUserNameAsync(user, model.Email);
+
                 return RedirectToAction("GetAll");
             }
 
+            model.AllRoles = GetAllRoles(model.CurrentRoles);
             return View(model);
         }
 
+        private List<SelectListItem> GetAllRoles(List<string> activeRoles)
+        {
+            var roles = _dbContext.Roles;
+            var list = new List<SelectListItem>();
+            list.AddRange(roles.Select(r => new SelectListItem
+            {
+                Text = r.Name,
+                Value = r.Name,
+                Selected = activeRoles.Contains(r.Name)
+            }));
 
+            return list;
+        }
     }
 }
