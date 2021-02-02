@@ -21,17 +21,10 @@ namespace NackademinWebShop
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
-                try
-                {
-                    var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-                    var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-                    var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
-                    DataInitializer.SeedData(dbContext, userManager, roleManager);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
+                var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
+                DataInitializer.SeedData(dbContext, userManager, roleManager);
             }
 
             host.Run();
