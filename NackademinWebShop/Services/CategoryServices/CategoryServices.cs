@@ -59,7 +59,6 @@ namespace NackademinWebShop.Services.CategoryServices
 
         public void Delete(int id)
         {
-            //todo we need too check if the category have products, if the category have products we are not allowed too delete.
             _categoryRepository.Delete(id);
         }
 

@@ -13,7 +13,7 @@ namespace NackademinWebShop.Areas.ViewComponents
             _categoryServices = categoryServices;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             var model = _categoryServices.GetAll(false);
             return View("Categories", model);

@@ -78,7 +78,7 @@ namespace NackademinWebShop.Services.ProductService
         public void Update(AdminProductEditViewModel model)
         {
             var product = _mapper.Map<Product>(model);
-            product.Category = _categoryRepository.GetById(model.CategoryId);
+            product.Category = _categoryRepository.GetById(model.CategoryId); //TODO CHECK ME
             _productRepository.Update(product);
         }
 

@@ -43,8 +43,8 @@ namespace NackademinWebShop
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddHttpContextAccessor();
 
-            services.AddScoped<IProductServices, ProductService>();
-            services.AddScoped<ICategoryServices, CategoryServices>();
+            services.AddTransient<IProductServices, ProductService>();
+            services.AddTransient<ICategoryServices, CategoryServices>();
             services.AddScoped<IUserService, UserService>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
