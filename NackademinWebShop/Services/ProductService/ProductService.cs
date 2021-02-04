@@ -30,22 +30,20 @@ namespace NackademinWebShop.Services.ProductService
 
         public List<AdminProductViewModel> GetAll()
         {
-            List<AdminProductViewModel> test = new List<AdminProductViewModel>();
+            List<AdminProductViewModel> adminProductViewModels = new List<AdminProductViewModel>();
             foreach (Product product in _productRepository.GetAll())
             {
                 var tmp = _mapper.Map<AdminProductViewModel>(product);
-                test.Add(tmp);
+                adminProductViewModels.Add(tmp);
             }
 
-            return test;
+            return adminProductViewModels;
         }
 
         public List<ProductIndexViewModel> GetSearchResult(string query, string sortOrder)
         {
             var products = _productRepository.GetAll();
             var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null||i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
-
-            string test = query;
 
             if (sortOrder == "asc")
                 return model.OrderBy(p => p.Price).ToList();
@@ -78,7 +76,6 @@ namespace NackademinWebShop.Services.ProductService
         public void Update(AdminProductEditViewModel model)
         {
             var product = _mapper.Map<Product>(model);
-            product.Category = _categoryRepository.GetById(model.CategoryId); //TODO CHECK ME
             _productRepository.Update(product);
         }
 
