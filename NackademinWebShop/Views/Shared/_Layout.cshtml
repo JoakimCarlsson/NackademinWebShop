@@ -27,6 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li>
+                            <!-- Search Start-->
                             <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" asp-controller="Home" asp-action="Index" method="get">
                                 <div class="input-group">
                                     <input type="search" class="form-control bg-light border-0 small" placeholder="Search" aria-label="Search" name="search">
@@ -37,6 +38,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <!--Search End -->
                         </li>
                         @if (User.IsInRole("Product Manager") || User.IsInRole("Administrator"))
                         {
@@ -54,7 +56,7 @@
     </header>
     <hr />
     <div class="container">
-
+        <!-- Bread Crumb Start-->
         <section class="py-5 bg-light">
             <div class="container">
                 <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
@@ -72,7 +74,7 @@
                 </div>
             </div>
         </section>
-
+        <!-- Bread Crumb End-->
         <section class="py-5">
             <div class="container p-0">
                 <div class="row">

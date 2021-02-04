@@ -13,7 +13,6 @@ namespace NackademinWebShop.Controllers
     public class ProductController : Controller
     {
         private readonly IProductServices _productServices;
-
         public ProductController(IProductServices productServices)
         {
             _productServices = productServices;
