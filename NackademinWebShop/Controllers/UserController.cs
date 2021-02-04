@@ -31,8 +31,6 @@ namespace NackademinWebShop.Controllers
             _dbContext = dbContext;
         }
 
-
-
         public IActionResult Register()
         {
             var model = new AdminUserRegisterViewModel {Roles = _dbContext.Roles.Select(i => i.Name).ToList()};

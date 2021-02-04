@@ -57,6 +57,7 @@
     <hr />
     <div class="container">
         <!-- Bread Crumb Start-->
+        
         <section class="py-5 bg-light">
             <div class="container">
                 <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
@@ -66,8 +67,29 @@
                     <div class="col-lg-6 text-lg-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                                
+                            @if (ViewBag.Breadcrumbs != null)
+                            {
+                                @foreach (var breadcrumb in ViewBag.Breadcrumbs as List<BreadcrumbViewModel>)
+                                {
+                                    if (breadcrumb.Active)
+                                    {
+                                        if (breadcrumb.Id.HasValue)
+                                        {
+                                            <li class="breadcrumb-item active"><a asp-action="@breadcrumb.Action" asp-controller="@breadcrumb.Controller" asp-route-Id="@breadcrumb.Id">@breadcrumb.Text</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="breadcrumb-item active"><a asp-action="@breadcrumb.Action" asp-controller="@breadcrumb.Controller">@breadcrumb.Text</a></li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <li class="breadcrumb-item" aria-current="page">@breadcrumb.Text</li>
+                                    }
+                                }
+                            }
+
                             </ol>
                         </nav>
                     </div>

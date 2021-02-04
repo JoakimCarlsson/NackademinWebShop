@@ -1,6 +1,12 @@
-﻿@model NackademinWebShop.ViewModels.Categories.CategoryListIndexViewModel
+﻿@using NackademinWebShop.Controllers
+@model NackademinWebShop.ViewModels.Categories.CategoryListIndexViewModel
 @{
     ViewData["Title"] = "Products";
+    ViewBag.Breadcrumbs = new List<BreadcrumbViewModel>()
+    {
+        new BreadcrumbViewModel("Home", nameof(HomeController.Index), "Home", true),
+        new BreadcrumbViewModel(@Model.Name, nameof(CategoryController.Index), "Category", false),
+    };
 }
 
 <div class="row mb-3 align-items-center">
