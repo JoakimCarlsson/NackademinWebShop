@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NackademinWebShop.Models;
 
 namespace NackademinWebShop.ViewModels.Admin.Product
 {
@@ -19,8 +21,7 @@ namespace NackademinWebShop.ViewModels.Admin.Product
         [MaxLength(512, ErrorMessage = "Can't be more then 500.")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "The product must have a price.")]
-        [Range(0, 9999999999999999.99, ErrorMessage = "Price can't be more then 9999999999999999.99")]
+        [Range(1, 9999999999999999.99, ErrorMessage = "The product must have a price.")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "You just choose a category.")]
