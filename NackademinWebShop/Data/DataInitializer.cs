@@ -21,7 +21,7 @@ namespace NackademinWebShop.Data
 
         private static void SeedProducts(ApplicationDbContext applicationDbContext)
         {
-            AddNewProduct(applicationDbContext, "Huawei Mate 20 X", "En stor telefon", "Mobile", 5049.99m, "Huawei Mate 20 X\\Huawei-Mate-20X-5G.jpg");
+            AddNewProduct(applicationDbContext, "Huawei Mate 20 X EVR-L29", "En stor telefon", "Mobile", 5049.99m, "Huawei Mate 20 X EVR-L29\\Huawei-Mate-20X-5G.jpg");
             AddNewProduct(applicationDbContext, "OnePlus Nord", "En liten telefon", "Mobile", 2459.99m, "OnePlus Nord\\OnePlus Nord N100.jpg");
             AddNewProduct(applicationDbContext, "OnePlus Nord N100", "En SKIT STOR telefon", "Mobile", 8756.99m, "OnePlus Nord N100\\OnePlus-Nord 5G.jpg");
             AddNewProduct(applicationDbContext, "OnePlus 7T", "En stor telefonasdfasdfasdfasdfasfd", "Mobile", 9678.99m, "OnePlus 7T\\OnePlus 7T.jpg");

@@ -259,7 +259,7 @@ namespace NackademinWebShop.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("ProductPicture")
+                    b.Property<string>("OldName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

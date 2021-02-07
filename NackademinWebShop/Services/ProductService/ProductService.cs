@@ -81,18 +81,27 @@ namespace NackademinWebShop.Services.ProductService
             return list;
         }
 
-        //todo need too make sure it also works when we just change the title.
         public void Update(AdminProductEditViewModel model)
         {
             var product = _mapper.Map<Product>(model);
 
             if (model.NewProductPicture != null)
-            {
-                string newPath = ReplaceFile(model);
-                product.ProductPicture = newPath;   
-            }
+                product.ProductPicture = ReplaceFile(model);
+
+            if (model.Name != model.OldName) //name changed
+                model.ProductPicture = RenameImgFolder(model);
 
             _productRepository.Update(product);
+        }
+
+        private string RenameImgFolder(AdminProductEditViewModel model)
+        {
+            string[] oldPath = model.ProductPicture.Split("\\");
+            string newPath = $"{model.Name}\\{oldPath[1]}";
+            string folderToRename = $"{_webHostEnvironment.WebRootPath}\\img\\{oldPath[0]}";
+            string newFolderName = $"{_webHostEnvironment.WebRootPath}\\img\\{model.Name}";
+            Directory.Move(folderToRename, newFolderName);
+            return newPath;
         }
 
         private string ReplaceFile(AdminProductEditViewModel model)
@@ -122,6 +131,7 @@ namespace NackademinWebShop.Services.ProductService
             _productRepository.Delete(id);
         }
 
+        //TODO REFACTOR ME
         private string UploadFile(AdminProductCreateViewModel model)
         {
             string fileName = null;

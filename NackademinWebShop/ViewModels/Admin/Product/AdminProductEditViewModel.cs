@@ -29,6 +29,7 @@ namespace NackademinWebShop.ViewModels.Admin.Product
         public int CategoryId { get; set; }
         public List<SelectListItem> Categories { get; set; } = new();
         public string ProductPicture { get; set; }
+        public string OldName { get; set; }
 
         [DataType(DataType.Upload)]
         public IFormFile NewProductPicture { get; set; }
