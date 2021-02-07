@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
 using NackademinWebShop.Repository.ProductRepository;
@@ -48,7 +51,7 @@ namespace NackademinWebShop.Services.ProductService
         public List<ProductIndexViewModel> GetSearchResult(string query, string sortOrder)
         {
             var products = _productRepository.GetAll();
-            var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null||i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
+            var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null || i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
 
             if (sortOrder == "asc")
                 return model.OrderBy(p => p.Price).ToList();
@@ -78,10 +81,30 @@ namespace NackademinWebShop.Services.ProductService
             return list;
         }
 
+        //todo need too make sure it also works when we just change the title.
         public void Update(AdminProductEditViewModel model)
         {
             var product = _mapper.Map<Product>(model);
+
+            if (model.NewProductPicture != null)
+            {
+                string newPath = ReplaceFile(model);
+                product.ProductPicture = newPath;   
+            }
+
             _productRepository.Update(product);
+        }
+
+        private string ReplaceFile(AdminProductEditViewModel model)
+        {
+            string path = $"{_webHostEnvironment.WebRootPath}\\img\\{model.ProductPicture}";
+
+            if (File.Exists(path))
+                File.Delete(path);
+
+            string test = UploadFile(model);
+
+            return test;
         }
 
         public void Create(AdminProductCreateViewModel model)
@@ -118,6 +141,29 @@ namespace NackademinWebShop.Services.ProductService
 
                 using var fileStream = new FileStream(filePath, FileMode.Create);
                 model.ProductPicture.CopyTo(fileStream);
+            }
+            return $@"{model.Name}\{fileName}";
+        }
+
+        private string UploadFile(AdminProductEditViewModel model)
+        {
+            string fileName = null;
+
+            if (model.NewProductPicture != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, $@"img\{model.Name}");
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                fileName = model.NewProductPicture.FileName;
+
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.NewProductPicture.CopyTo(fileStream);
             }
             return $@"{model.Name}\{fileName}";
         }

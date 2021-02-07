@@ -28,6 +28,7 @@ namespace NackademinWebShop.ViewModels.Admin.Product
 
         [Required(ErrorMessage = "Please choose product image")]
         [DataType(DataType.Upload)]
+        //[FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]//TODO IMPLEMENT PROPER VALIDATION
         public IFormFile ProductPicture { get; set; }
     }
 }

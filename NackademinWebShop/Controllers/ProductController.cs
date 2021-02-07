@@ -39,11 +39,12 @@ namespace NackademinWebShop.Controllers
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Edit(int id)
         {
-            var model = _productServices.GetEdit(id);
+            AdminProductEditViewModel model = _productServices.GetEdit(id);
             return View(model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Edit(AdminProductEditViewModel model)
         {
