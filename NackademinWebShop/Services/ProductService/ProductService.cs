@@ -87,9 +87,8 @@ namespace NackademinWebShop.Services.ProductService
 
             if (model.NewProductPicture != null)
                 product.ProductPicture = ReplaceFile(model);
-
-            if (model.Name != model.OldName) //name changed
-                model.ProductPicture = RenameImgFolder(model);
+            else if (model.Name != model.OldName)
+                product.ProductPicture = RenameImgFolder(model);
 
             _productRepository.Update(product);
         }
