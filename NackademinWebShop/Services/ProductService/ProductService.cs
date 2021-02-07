@@ -128,6 +128,8 @@ namespace NackademinWebShop.Services.ProductService
 
         public void Delete(int id)
         {
+            var product = _productRepository.Get(id);
+            Directory.Delete($"{_webHostEnvironment.WebRootPath}\\img\\{product.ProductPicture.Split("\\")[0]}", true);
             _productRepository.Delete(id);
         }
 
