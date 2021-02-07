@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using NackademinWebShop.Services.ProductService;
 using NackademinWebShop.ViewModels.Admin.Product;
@@ -13,6 +15,7 @@ namespace NackademinWebShop.Controllers
     public class ProductController : Controller
     {
         private readonly IProductServices _productServices;
+
         public ProductController(IProductServices productServices)
         {
             _productServices = productServices;
@@ -62,6 +65,7 @@ namespace NackademinWebShop.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Create(AdminProductCreateViewModel model)
         {

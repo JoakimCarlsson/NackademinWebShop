@@ -12,7 +12,7 @@
             <h3 class="h4">Edit</h3>
         </div>
         <div class="card-body">
-            <form method="post" asp-controller="Product" asp-action="Create">
+            <form method="post" asp-controller="Product" asp-action="Create" enctype="multipart/form-data">
                 <div class="form-group">
                     <label asp-for="Name">Name</label>
                     <input class="form-control" asp-for="Name">
@@ -33,11 +33,30 @@
 
                 <div class="form-group">
                     <label asp-for="CategoryId">Category</label>
-                    <select class="form-control mb-3" asp-for="CategoryId" asp-items="Model.Categories" onfocus='this.size=@Model.Categories.Count;'></select>
+                    <select class="form-control mb-3" asp-for="CategoryId" asp-items="Model.Categories"></select>
                     <span asp-validation-for="CategoryId" class="field-validation-error"></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+
+                <div class="form-group">
+                    <label asp-for="ProductPicture">Product Picature</label>
+                    <div class="custom-file">
+                        <input asp-for="ProductPicture" class="custom-file-input" id="ProductPicture">
+                        <label class="custom-file-label" for="ProductPicture">Choose file</label>
+                    </div>
+                    <span asp-validation-for="ProductPicture" class="text-danger"></span>
+                </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}  

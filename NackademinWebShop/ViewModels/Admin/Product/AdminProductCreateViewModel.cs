@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NackademinWebShop.ViewModels.Admin.Product
@@ -23,6 +24,10 @@ namespace NackademinWebShop.ViewModels.Admin.Product
 
         [Required(ErrorMessage = "You just choose a category.")]
         public int CategoryId { get; set; }
-        public List<SelectListItem> Categories { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> Categories { get; set; } = new();
+
+        [Required(ErrorMessage = "Please choose product image")]
+        [DataType(DataType.Upload)]
+        public IFormFile ProductPicture { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace NackademinWebShop.Models
         [Range(0, 9999999999999999.99)]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+        [Required]
+        public string ProductPicture { get; set; }
         [Required] 
         public int CategoryId { get; set; }
         [Required]

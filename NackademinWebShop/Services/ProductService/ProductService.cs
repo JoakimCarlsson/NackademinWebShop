@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
@@ -15,12 +18,14 @@ namespace NackademinWebShop.Services.ProductService
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IMapper mapper)
+        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public ProductIndexViewModel Get(int id)
@@ -81,7 +86,10 @@ namespace NackademinWebShop.Services.ProductService
 
         public void Create(AdminProductCreateViewModel model)
         {
+            string uniqueFileName = UploadFile(model);
+
             var product = _mapper.Map<Product>(model);
+            product.ProductPicture = uniqueFileName;
             product.Category = _categoryRepository.GetById(model.CategoryId);
             _productRepository.Create(product);
         }
@@ -89,6 +97,29 @@ namespace NackademinWebShop.Services.ProductService
         public void Delete(int id)
         {
             _productRepository.Delete(id);
+        }
+
+        private string UploadFile(AdminProductCreateViewModel model)
+        {
+            string fileName = null;
+
+            if (model.ProductPicture != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, $@"img\{model.Name}");
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                fileName = model.ProductPicture.FileName;
+
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                model.ProductPicture.CopyTo(fileStream);
+            }
+            return $@"{model.Name}\{fileName}";
         }
     }
 }

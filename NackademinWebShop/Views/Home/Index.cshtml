@@ -34,7 +34,7 @@
             <div class="product text-center">
                 <div class="mb-3 position-relative">
                     <div class="badge text-white badge-">
-                    </div><a class="d-block" asp-controller="Product" asp-action="Detail" asp-route-Id="@product.Id"><img class="img-fluid w-100" src="~/img/product-1.jpg" alt="..."></a>
+                    </div><a class="d-block" asp-controller="Product" asp-action="Detail" asp-route-Id="@product.Id"><img class="img-fluid w-100" src="~/img/@product.ProductPicture" alt="..."></a>
                 </div>
                 <h6>
                     <a class="reset-anchor" asp-controller="Product" asp-action="Detail" asp-route-Id="@product.Id">@product.Name</a>
