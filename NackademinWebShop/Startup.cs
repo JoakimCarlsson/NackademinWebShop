@@ -19,7 +19,6 @@ using NackademinWebShop.Repository.CategoryRepository;
 using NackademinWebShop.Repository.ProductRepository;
 using NackademinWebShop.Services.CategoryServices;
 using NackademinWebShop.Services.ProductService;
-using NackademinWebShop.Services.UserService;
 
 namespace NackademinWebShop
 {
@@ -45,7 +44,6 @@ namespace NackademinWebShop
 
             services.AddTransient<IProductServices, ProductService>();
             services.AddTransient<ICategoryServices, CategoryServices>();
-            services.AddScoped<IUserService, UserService>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 

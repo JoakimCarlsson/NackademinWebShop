@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NackademinWebShop.Data;
-using NackademinWebShop.Services.UserService;
 using NackademinWebShop.ViewModels.Admin.User;
 using NackademinWebShop.ViewModels.Admin.UserRole;
 
@@ -18,14 +17,12 @@ namespace NackademinWebShop.Controllers
     [Authorize(Roles = "Administrator")]
     public class UserController : Controller
     {
-        private readonly IUserService _userService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IMapper _mapper;
         private readonly ApplicationDbContext _dbContext;
 
-        public UserController(IUserService userService, UserManager<IdentityUser> userManager, IMapper mapper, ApplicationDbContext dbContext)
+        public UserController(UserManager<IdentityUser> userManager, IMapper mapper, ApplicationDbContext dbContext)
         {
-            _userService = userService;
             _userManager = userManager;
             _mapper = mapper;
             _dbContext = dbContext;
@@ -42,7 +39,7 @@ namespace NackademinWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email};
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true};
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
