@@ -6,7 +6,7 @@ namespace NackademinWebShop.Repository.ProductRepository
     public interface IProductRepository
     {
         Product Get(int id);
-        IEnumerable<Product> GetAll();
+        IEnumerable<Product> GetAll(bool includeInActive);
         void Update(Product product);
         void Create(Product product);
     }

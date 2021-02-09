@@ -20,9 +20,9 @@ namespace NackademinWebShop.Repository.ProductRepository
             return _applicationDbContext.Products.Include(c => c.Category).FirstOrDefault(i => i.Id == id);
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll(bool includeInActive)
         {
-            return _applicationDbContext.Products.Include(c => c.Category);
+            return includeInActive ? _applicationDbContext.Products.Include(c => c.Category) : _applicationDbContext.Products.Include(c => c.Category).Where(a => a.IsActive);
         }
 
         public void Update(Product product)

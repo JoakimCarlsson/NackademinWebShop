@@ -20,20 +20,22 @@
                             <th>Description</th>
                             <th>Price</th>
                             <th>Category</th>
+                            <th>Is Active</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var product in @Model.Products)
                         {
-                            <tr>
-                                <th scope="row">@product.Id</th>
-                                <td>@product.Name</td>
-                                <td>@product.Description</td>
-                                <td>@product.Price</td>
-                                <td>@product.Category.Name</td>
-                                <td><a asp-controller="Product" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
-                            </tr>
+                        <tr>
+                            <th scope="row">@product.Id</th>
+                            <td>@product.Name</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price</td>
+                            <td>@product.Category.Name</td>
+                            <td>@product.IsActive</td>
+                            <td><a asp-controller="Product" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
+                        </tr>
                         }
                     </tbody>
                 </table>

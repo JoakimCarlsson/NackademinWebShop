@@ -24,7 +24,7 @@ namespace NackademinWebShop.Repository.CategoryRepository
 
         public Category GetById(int id)
         {
-            return _applicationDbContext.Categories.Include(p => p.Products).FirstOrDefault(c => c.Id == id);
+            return _applicationDbContext.Categories.Include(p => p.Products.Where(p => p.IsActive)).FirstOrDefault(c => c.Id == id);
         }
 
         public void Update(Category category)

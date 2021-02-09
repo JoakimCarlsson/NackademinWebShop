@@ -36,10 +36,10 @@ namespace NackademinWebShop.Services.ProductService
             return _mapper.Map<ProductIndexViewModel>(_productRepository.Get(id));
         }
 
-        public List<AdminProductViewModel> GetAll()
+        public List<AdminProductViewModel> GetAll(bool includeInActive)
         {
             List<AdminProductViewModel> adminProductViewModels = new List<AdminProductViewModel>();
-            foreach (Product product in _productRepository.GetAll())
+            foreach (Product product in _productRepository.GetAll(includeInActive))
             {
                 var tmp = _mapper.Map<AdminProductViewModel>(product);
                 adminProductViewModels.Add(tmp);
@@ -50,7 +50,7 @@ namespace NackademinWebShop.Services.ProductService
 
         public List<ProductIndexViewModel> GetSearchResult(string query, string sortOrder)
         {
-            var products = _productRepository.GetAll();
+            var products = _productRepository.GetAll(false);
             var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null || i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
 
             if (sortOrder == "asc")

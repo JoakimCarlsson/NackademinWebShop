@@ -31,7 +31,7 @@ namespace NackademinWebShop.Controllers
         {
             var model = new AdminProductListViewModel
             {
-                Products = _productServices.GetAll()
+                Products = _productServices.GetAll(true)
             };
             return View(model);
         }

@@ -13,5 +13,6 @@ namespace NackademinWebShop.ViewModels.Admin.Product
         public string Description { get; set; }
         public decimal Price { get; set; }
         public AdminCategoryViewModel Category { get; set; }
+        public bool IsActive { get; set; }
     }
 }
