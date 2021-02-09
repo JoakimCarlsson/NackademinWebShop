@@ -14,32 +14,32 @@
         <div class="card-body">
             <form method="post" asp-controller="Product" asp-action="Create" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label asp-for="Name">Name</label>
+                    <label class="form-control-label" asp-for="Name">Name</label>
                     <input class="form-control" asp-for="Name">
                     <span asp-validation-for="Name" class="text-danger validation-summary-errors"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Description">Comment</label>
+                    <label class="form-control-label" asp-for="Description">Comment</label>
                     <textarea rows="5" cols="30" class="form-control" asp-for="Description"></textarea>
                     <span asp-validation-for="Description" class="text-danger validation-summary-errors"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Price">Price</label>
+                    <label class="form-control-label" asp-for="Price">Price</label>
                     <input class="form-control" asp-for="Price">
                     <span asp-validation-for="Price" class="text-danger validation-summary-errors"></span>
 
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="CategoryId">Category</label>
+                    <label class="form-control-label" asp-for="CategoryId">Category</label>
                     <select class="form-control mb-3" asp-for="CategoryId" asp-items="Model.Categories"></select>
                     <span asp-validation-for="CategoryId" class="text-danger validation-summary-errors"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="ProductPicture">Product Picature</label>
+                    <label class="form-control-label" asp-for="ProductPicture">Product Picature</label>
                     <div class="custom-file">
                         <input asp-for="ProductPicture" class="custom-file-input" id="ProductPicture">
                         <label class="custom-file-label" for="ProductPicture">Choose file</label>
