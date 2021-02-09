@@ -63,21 +63,6 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Delete(string id)
-        {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            if (userId == id)
-            {
-                ModelState.AddModelError("", "You can't delete your own user.");
-                return RedirectToAction("GetAll");
-            }
-            var user = _userManager.Users.FirstOrDefault(p => p.Id == id);
-
-            var result = await _userManager.DeleteAsync(user);
-
-            return RedirectToAction("GetAll");
-        }
-
         public async Task<IActionResult> GetAll()
         {
             //TODO needs cleaning up.

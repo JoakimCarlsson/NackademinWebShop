@@ -22,7 +22,6 @@
                             <th>Email Confirmed</th>
                             <th>CurrentAllRoles</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +33,6 @@
                             <th>@product.EmailConfirmed</th>
                             <th>@foreach(var role in product.Roles){<a>@role.Name, </a>}</th>
                             <td><a asp-controller="User" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
-                            <td><a asp-controller="User" asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger" role="button" aria-pressed="true">Delete</a></td>
                         </tr>
                         }
                     </tbody>
