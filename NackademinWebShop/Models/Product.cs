@@ -18,6 +18,8 @@ namespace NackademinWebShop.Models
         public decimal Price { get; set; }
         [Required]
         public string ProductPicture { get; set; }
+        [Required]
+        public bool IsActive { get; set; }
         [Required] 
         public int CategoryId { get; set; }
         [Required]

@@ -21,16 +21,16 @@ namespace NackademinWebShop.Data
 
         private static void SeedProducts(ApplicationDbContext applicationDbContext)
         {
-            AddNewProduct(applicationDbContext, "Huawei Mate 20 X EVR-L29", "En stor telefon", "Mobile", 5049.99m, "Huawei Mate 20 X EVR-L29\\Huawei-Mate-20X-5G.jpg");
-            AddNewProduct(applicationDbContext, "OnePlus Nord", "En liten telefon", "Mobile", 2459.99m, "OnePlus Nord\\OnePlus Nord N100.jpg");
-            AddNewProduct(applicationDbContext, "OnePlus Nord N100", "En SKIT STOR telefon", "Mobile", 8756.99m, "OnePlus Nord N100\\OnePlus-Nord 5G.jpg");
-            AddNewProduct(applicationDbContext, "OnePlus 7T", "En stor telefonasdfasdfasdfasdfasfd", "Mobile", 9678.99m, "OnePlus 7T\\OnePlus 7T.jpg");
-            AddNewProduct(applicationDbContext, "Xiaomi Poco X3", "En stor telefon asdf asdf asdf asdf ", "Mobile", 15049.99m, "Xiaomi Poco X3\\Xiaomi Poco X3.jpg"); //USB Flash drives
-            AddNewProduct(applicationDbContext, "Kingston DataTraveler G3", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99, "Kingston DataTraveler G3\\Kingston DataTraveler G3.jpg"); //USB Flash drives
-            AddNewProduct(applicationDbContext, "SanDisk UltraFit", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99, "SanDisk UltraFit\\SanDisk UltraFit.jpg"); //USB Flash drives
+            AddNewProduct(applicationDbContext, "Huawei Mate 20 X EVR-L29", "En stor telefon", "Mobile", 5049.99m, "Huawei Mate 20 X EVR-L29\\Huawei-Mate-20X-5G.jpg", true);
+            AddNewProduct(applicationDbContext, "OnePlus Nord", "En liten telefon", "Mobile", 2459.99m, "OnePlus Nord\\OnePlus Nord N100.jpg", true);
+            AddNewProduct(applicationDbContext, "OnePlus Nord N100", "En SKIT STOR telefon", "Mobile", 8756.99m, "OnePlus Nord N100\\OnePlus-Nord 5G.jpg", true);
+            AddNewProduct(applicationDbContext, "OnePlus 7T", "En stor telefonasdfasdfasdfasdfasfd", "Mobile", 9678.99m, "OnePlus 7T\\OnePlus 7T.jpg", true);
+            AddNewProduct(applicationDbContext, "Xiaomi Poco X3", "En stor telefon asdf asdf asdf asdf ", "Mobile", 15049.99m, "Xiaomi Poco X3\\Xiaomi Poco X3.jpg", true); //USB Flash drives
+            AddNewProduct(applicationDbContext, "Kingston DataTraveler G3", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99, "Kingston DataTraveler G3\\Kingston DataTraveler G3.jpg", true); //USB Flash drives
+            AddNewProduct(applicationDbContext, "SanDisk UltraFit", "En stor telefon asdf asdf asdf asdf ", "USB Flash drives", 99, "SanDisk UltraFit\\SanDisk UltraFit.jpg", true); //USB Flash drives
         }
 
-        private static void AddNewProduct(ApplicationDbContext applicationDbContext, string name, string description, string categoryName, decimal price, string filePath)
+        private static void AddNewProduct(ApplicationDbContext applicationDbContext, string name, string description, string categoryName, decimal price, string filePath, bool isActive)
         {
             Product product = applicationDbContext.Products.FirstOrDefault(p => p.Name == name);
             if (product == null)
@@ -46,7 +46,7 @@ namespace NackademinWebShop.Data
                     Name = name,
                     Price = price,
                     ProductPicture = filePath,
-
+                    IsActive = isActive,
                 });
 
                 applicationDbContext.SaveChanges();
@@ -55,16 +55,20 @@ namespace NackademinWebShop.Data
 
         private static void SeedCategories(ApplicationDbContext applicationDbContext)
         {
-            AddNewCategory(applicationDbContext, "Mobile");
-            AddNewCategory(applicationDbContext, "USB Flash drives");
-            AddNewCategory(applicationDbContext, "Headphones");
+            AddNewCategory(applicationDbContext, "Mobile", true);
+            AddNewCategory(applicationDbContext, "USB Flash drives", true);
+            AddNewCategory(applicationDbContext, "Headphones", true);
         }
 
-        private static void AddNewCategory(ApplicationDbContext applicationDbContext, string name)
+        private static void AddNewCategory(ApplicationDbContext applicationDbContext, string name, bool isActive)
         {
             Category category = applicationDbContext.Categories.FirstOrDefault(c => c.Name == name);
             if (category != null) return;
-            applicationDbContext.Categories.Add(new Category { Name = name });
+            applicationDbContext.Categories.Add(new Category
+            {
+                Name = name,
+                IsActive = isActive
+            });
             applicationDbContext.SaveChanges();
         }
 
