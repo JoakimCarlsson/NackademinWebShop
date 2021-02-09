@@ -79,12 +79,5 @@ namespace NackademinWebShop.Controllers
             model.Categories = _productServices.GetCategoriesList();
             return View(model);
         }
-
-        [Authorize(Roles = "Administrator,Product Manager")]//TODO WE SHOULD FIX THIS :)
-        public IActionResult Delete(int id)
-        {
-            _productServices.Delete(id);
-            return RedirectToAction("GetAll");
-        }
     }
 }

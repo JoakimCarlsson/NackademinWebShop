@@ -21,7 +21,6 @@
                             <th>Price</th>
                             <th>Category</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +33,6 @@
                                 <td>@product.Price</td>
                                 <td>@product.Category.Name</td>
                                 <td><a asp-controller="Product" asp-action="Edit" asp-route-Id="@product.Id" class="btn btn-primary" role="button" aria-pressed="true">Edit</a></td>
-                                <td><a asp-controller="Product" asp-action="Delete" asp-route-Id="@product.Id" class="btn btn-danger" role="button" aria-pressed="true">Delete</a></td>
                             </tr>
                         }
                     </tbody>
