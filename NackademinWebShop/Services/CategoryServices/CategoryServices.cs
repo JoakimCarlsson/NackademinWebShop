@@ -57,11 +57,6 @@ namespace NackademinWebShop.Services.CategoryServices
             _categoryRepository.Update(category);
         }
 
-        public void Delete(int id)
-        {
-            _categoryRepository.Delete(id);
-        }
-
         public int GetProductsCountById(int id)
         {
             return _categoryRepository.GetById(id).Products.Count;

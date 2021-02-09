@@ -8,7 +8,6 @@ namespace NackademinWebShop.Repository.CategoryRepository
         IEnumerable<Category> GetAll(bool includeEmpty);
         Category GetById(int id);
         void Update(Category category);
-        void Delete(int id);
         void Create(Category category);
     }
 }

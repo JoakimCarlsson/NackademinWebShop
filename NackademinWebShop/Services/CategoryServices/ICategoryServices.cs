@@ -11,6 +11,5 @@ namespace NackademinWebShop.Services.CategoryServices
         AdminCategoryEditViewModel GetById(int id);
         CategoryListIndexViewModel Get(int id); //TODO FIX ME
         void Update(AdminCategoryEditViewModel model);
-        void Delete(int id);
     }
 }

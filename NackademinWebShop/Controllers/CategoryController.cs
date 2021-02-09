@@ -66,15 +66,6 @@ namespace NackademinWebShop.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Administrator,Product Manager")]
-        public IActionResult Delete(int id)
-        {
-           //todo we need too implement a check, so we do not delete categories that have products in them. which not should be possible.
-           //but still.
-            _categoryServices.Delete(id);
-            return RedirectToAction("GetAll");
-        }
-
         public IActionResult GetAll()
         {
             var model = new AdminCategoryListViewModel {Categories = _categoryServices.GetAll(true)};
