@@ -21,7 +21,8 @@ namespace NackademinWebShop.ViewModels.Admin.Product
         [Required(ErrorMessage = "The product must have a price.")]
         [Range(0, 9999999999999999.99, ErrorMessage = "Price can't be more then 9999999999999999.99")]
         public decimal Price { get; set; }
-
+        [Required(ErrorMessage = "The product must be either active or disabled.")]
+        public bool IsActive { get; set; }
         [Required(ErrorMessage = "You just choose a category.")]
         public int CategoryId { get; set; }
         public List<SelectListItem> Categories { get; set; } = new();
