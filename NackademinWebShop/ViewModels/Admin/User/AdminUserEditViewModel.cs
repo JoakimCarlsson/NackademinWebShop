@@ -14,6 +14,7 @@ namespace NackademinWebShop.ViewModels.Admin.User
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
+        [Display(Name = "Roles")]
         public List<string> CurrentRoles { get; set; }
         public List<SelectListItem> AllRoles { get; set; }
     }

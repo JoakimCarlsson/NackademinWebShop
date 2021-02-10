@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NackademinWebShop.Attribute;
 using NackademinWebShop.Models;
 
 namespace NackademinWebShop.ViewModels.Admin.Product
@@ -35,6 +36,7 @@ namespace NackademinWebShop.ViewModels.Admin.Product
         public string OldName { get; set; }
 
         [DataType(DataType.Upload)]
+        [AllowedExtensions(new[] { ".jpg", ".png", ".jpeg", ".gif" })]
         public IFormFile NewProductPicture { get; set; }
     }
 }

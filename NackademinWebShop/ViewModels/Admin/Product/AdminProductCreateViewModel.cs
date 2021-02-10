@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NackademinWebShop.Attribute;
 
 namespace NackademinWebShop.ViewModels.Admin.Product
 {
@@ -29,7 +30,7 @@ namespace NackademinWebShop.ViewModels.Admin.Product
 
         [Required(ErrorMessage = "Please choose product image")]
         [DataType(DataType.Upload)]
-        //[FileExtensions(Extensions = "jpg,png,gif,jpeg,bmp,svg")]//TODO IMPLEMENT PROPER VALIDATION
+        [AllowedExtensions(new[] { ".jpg", ".png", ".jpeg", ".gif" })]
         public IFormFile ProductPicture { get; set; }
     }
 }
