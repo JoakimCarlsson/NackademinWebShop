@@ -40,7 +40,6 @@ namespace NackademinWebShop.Controllers
             {
                 _categoryServices.Create(model);
                 return RedirectToAction("Index", "Home");
-                //ModelState.AddModelError(); //TODO FIX ME. :')
             }
 
             return View(model);

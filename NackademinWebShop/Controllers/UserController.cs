@@ -65,22 +65,20 @@ namespace NackademinWebShop.Controllers
 
         public async Task<IActionResult> GetAll()
         {
-            //TODO needs cleaning up.
             var model = new AdminUserListViewModel();
             List<AdminUserViewModel> users = new List<AdminUserViewModel>();
 
             foreach (IdentityUser user in _userManager.Users)
             {
-                var test = _mapper.Map<AdminUserViewModel>(user);
-                test.Roles = new List<AdminUserRoleViewModel>();
-
+                var userViewModel = _mapper.Map<AdminUserViewModel>(user);
+                userViewModel.Roles = new List<AdminUserRoleViewModel>();
                 var roles = await _userManager.GetRolesAsync(user);
 
                 foreach (string role in roles)
                 {
-                    test.Roles.Add(new AdminUserRoleViewModel { Name = role });
+                    userViewModel.Roles.Add(new AdminUserRoleViewModel { Name = role });
                 }
-                users.Add(test);
+                users.Add(userViewModel);
             }
 
             model.Users = users;

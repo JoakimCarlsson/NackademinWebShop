@@ -39,9 +39,7 @@ namespace NackademinWebShop.Services.CategoryServices
 
         public AdminCategoryEditViewModel GetById(int id)
         {
-            Category category = _categoryRepository.GetById(id); //Todo, check if null.
-            //but this should never be null, but still good to check.
-
+            Category category = _categoryRepository.GetById(id);
             var categoryEditViewModel = _mapper.Map<AdminCategoryEditViewModel>(category);
             return categoryEditViewModel;
         }
