@@ -37,5 +37,10 @@ namespace NackademinWebShop.Repository.CategoryRepository
             _applicationDbContext.Categories.Add(category);
             _applicationDbContext.SaveChanges();
         }
+
+        public bool NameExists(string name)
+        {
+            return _applicationDbContext.Categories.Any(c => c.Name == name);
+        }
     }
 }

@@ -36,10 +36,13 @@ namespace NackademinWebShop.Controllers
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Create(AdminCategoryCreateViewModel model)
         {
+            if (_categoryServices.NameExists(model.Name))
+                ModelState.AddModelError("Name", "An existing category with the same name already exists.");    
+
             if (ModelState.IsValid)
             {
                 _categoryServices.Create(model);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GetAll", "Category");
             }
 
             return View(model);
@@ -56,6 +59,9 @@ namespace NackademinWebShop.Controllers
         [Authorize(Roles = "Administrator,Product Manager")]
         public IActionResult Edit(AdminCategoryEditViewModel model)
         {
+            if (_categoryServices.NameExists(model.Name))
+                ModelState.AddModelError("Name", "An existing category with the same name already exists.");
+
             if (ModelState.IsValid)
             {
                 _categoryServices.Update(model);

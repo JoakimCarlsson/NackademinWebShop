@@ -37,6 +37,11 @@ namespace NackademinWebShop.Services.CategoryServices
             _categoryRepository.Create(category);
         }
 
+        public bool NameExists(string name)
+        {
+            return _categoryRepository.NameExists(name);
+        }
+
         public AdminCategoryEditViewModel GetById(int id)
         {
             Category category = _categoryRepository.GetById(id);
