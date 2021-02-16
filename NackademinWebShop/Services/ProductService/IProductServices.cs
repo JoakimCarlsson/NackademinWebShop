@@ -7,9 +7,9 @@ namespace NackademinWebShop.Services.ProductService
 {
     public interface IProductServices
     {
-        ProductIndexViewModel Get(int id);
+        ProductDetailViewModel Get(int id);
         List<AdminProductViewModel> GetAll(bool includeInActive);
-        List<ProductIndexViewModel> GetSearchResult(string query, string searchOrder);
+        List<ProductDetailViewModel> GetSearchResult(string query, string searchOrder);
         AdminProductEditViewModel GetEdit(int id);
         public List<SelectListItem> GetCategoriesList();
         public void Update(AdminProductEditViewModel model);

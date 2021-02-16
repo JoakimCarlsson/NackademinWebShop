@@ -3,7 +3,7 @@ using NackademinWebShop.ViewModels.Categories;
 
 namespace NackademinWebShop.ViewModels.Products
 {
-    public class ProductIndexViewModel
+    public class ProductDetailViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

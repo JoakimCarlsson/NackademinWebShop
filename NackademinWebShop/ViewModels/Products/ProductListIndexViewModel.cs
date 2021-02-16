@@ -8,6 +8,6 @@ namespace NackademinWebShop.ViewModels.Products
 {
     public class ProductListIndexViewModel
     {
-        public List<ProductIndexViewModel> Products { get; set; }
+        public List<ProductDetailViewModel> Products { get; set; }
     }
 }

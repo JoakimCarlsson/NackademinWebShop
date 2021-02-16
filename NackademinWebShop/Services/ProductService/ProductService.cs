@@ -31,9 +31,9 @@ namespace NackademinWebShop.Services.ProductService
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public ProductIndexViewModel Get(int id)
+        public ProductDetailViewModel Get(int id)
         {
-            return _mapper.Map<ProductIndexViewModel>(_productRepository.Get(id));
+            return _mapper.Map<ProductDetailViewModel>(_productRepository.Get(id));
         }
 
         public List<AdminProductViewModel> GetAll(bool includeInActive)
@@ -48,10 +48,10 @@ namespace NackademinWebShop.Services.ProductService
             return adminProductViewModels;
         }
 
-        public List<ProductIndexViewModel> GetSearchResult(string query, string sortOrder)
+        public List<ProductDetailViewModel> GetSearchResult(string query, string sortOrder)
         {
             var products = _productRepository.GetAll(false);
-            var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => query == null || i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
+            var model = _mapper.Map<List<ProductDetailViewModel>>(products.Where(i => query == null || i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
 
             if (sortOrder == "asc")
                 return model.OrderBy(p => p.Price).ToList();
