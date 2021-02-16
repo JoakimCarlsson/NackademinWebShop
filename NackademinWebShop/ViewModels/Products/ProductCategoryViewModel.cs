@@ -2,7 +2,7 @@
 
 namespace NackademinWebShop.ViewModels.Products
 {
-    public class ProductShowViewModel
+    public class ProductCategoryViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

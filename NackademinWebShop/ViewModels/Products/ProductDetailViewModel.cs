@@ -10,6 +10,6 @@ namespace NackademinWebShop.ViewModels.Products
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string ProductPicture { get; set; }
-        public CategoryIndexViewModel Category { get; set; }
+        public CategoryProductViewModel Category { get; set; }
     }
 }

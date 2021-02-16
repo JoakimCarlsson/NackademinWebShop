@@ -14,6 +14,7 @@ namespace NackademinWebShop.Mappings
         public CategoryProfile()
         {
             CreateMap<Category, CategoryIndexViewModel>();
+            CreateMap<Category, CategoryProductViewModel>();
             CreateMap<Category, AdminCategoryViewModel>();
             CreateMap<CategoryIndexViewModel, Category>();
             CreateMap<AdminCategoryCreateViewModel, Category>();
