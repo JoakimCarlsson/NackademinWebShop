@@ -30,7 +30,7 @@ namespace NackademinWebShop.Controllers
 
         public IActionResult Register()
         {
-            var model = new AdminUserRegisterViewModel {Roles = _dbContext.Roles.Select(i => i.Name).ToList()};
+            var model = new AdminUserRegisterViewModel { Roles = _dbContext.Roles.Select(i => i.Name).ToList() };
             return View(model);
         }
 
@@ -39,7 +39,7 @@ namespace NackademinWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true};
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -50,12 +50,9 @@ namespace NackademinWebShop.Controllers
                     }
                     return RedirectToAction("GetAll");
                 }
-                else
+                foreach (var error in result.Errors)
                 {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
+                    ModelState.AddModelError("", error.Description);
                 }
             }
 
@@ -93,7 +90,7 @@ namespace NackademinWebShop.Controllers
             model.Id = user.Id;
 
             var activeRoles = await _userManager.GetRolesAsync(user);
-            model.AllRoles = GetAllRoles((List<string>) activeRoles);
+            model.AllRoles = GetAllRoles((List<string>)activeRoles);
 
             return View(model);
         }
@@ -104,13 +101,14 @@ namespace NackademinWebShop.Controllers
             if (ModelState.IsValid)
             {
                 var user = _userManager.Users.FirstOrDefault(i => i.Id == model.Id);
+                await _userManager.RemoveFromRolesAsync(user, (List<string>)await _userManager.GetRolesAsync(user)).ConfigureAwait(false);
+                await _userManager.AddToRolesAsync(user, model.CurrentRoles).ConfigureAwait(false);
 
-                await _userManager.RemoveFromRolesAsync(user, _dbContext.Roles.Select(n => n.Name));
-                await _userManager.AddToRolesAsync(user, model.CurrentRoles);
-
-                user.EmailConfirmed = true;
-                await _userManager.SetEmailAsync(user, model.Email);
-                await _userManager.SetUserNameAsync(user, model.Email);
+                if (model.OldEmail != model.Email)
+                {
+                    await _userManager.SetEmailAsync(user, model.Email).ConfigureAwait(false);
+                    await _userManager.SetUserNameAsync(user, model.Email).ConfigureAwait(false);
+                }
 
                 return RedirectToAction("GetAll");
             }

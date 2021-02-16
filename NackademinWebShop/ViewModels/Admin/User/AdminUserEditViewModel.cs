@@ -13,6 +13,8 @@ namespace NackademinWebShop.ViewModels.Admin.User
         public string Id { get; set; }
         [Required, MaxLength(256), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public string OldEmail { get; set; }
+
         [Required]
         [Display(Name = "Roles")]
         public List<string> CurrentRoles { get; set; }
