@@ -4,8 +4,8 @@
     ViewData["Title"] = "Products";
     ViewBag.Breadcrumbs = new List<BreadcrumbViewModel>()
     {
-        new BreadcrumbViewModel("Home", nameof(HomeController.Index), "Home", true),
-        new BreadcrumbViewModel(@Model.Name, nameof(CategoryController.Index), "Category", false),
+        new("Home", nameof(HomeController.Index), "Home", true),
+        new(@Model.Name, nameof(CategoryController.Index), "Category", false),
     };
 }
 
