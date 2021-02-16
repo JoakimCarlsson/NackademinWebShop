@@ -19,9 +19,9 @@ namespace NackademinWebShop.Controllers
             _categoryServices = categoryServices;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(int id, string sortOrder)
         {
-            var model = _categoryServices.Get(id);
+            var model = _categoryServices.GetProductsInCategory(id, sortOrder);
             return View(model);
         }
 

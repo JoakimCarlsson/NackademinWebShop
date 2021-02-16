@@ -10,7 +10,7 @@ namespace NackademinWebShop.Services.CategoryServices
         void Create(AdminCategoryCreateViewModel model);
         bool NameExists(string name);
         AdminCategoryEditViewModel GetById(int id);
-        CategoryListIndexViewModel Get(int id); //TODO FIX ME
+        CategoryListIndexViewModel GetProductsInCategory(int id, string sortOrder); //TODO FIX ME
         void Update(AdminCategoryEditViewModel model);
     }
 }

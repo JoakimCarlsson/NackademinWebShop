@@ -53,12 +53,12 @@ namespace NackademinWebShop.Services.ProductService
             var products = _productRepository.GetAll(false);
             var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => searchViewModel.Search == null || i.Name.ToLower().Contains(searchViewModel.Search.ToLower()) || i.Description.ToLower().Contains(searchViewModel.Search.ToLower())).ToList());
 
-            if (searchViewModel.SortOrder == "asc")
-                return model.OrderBy(p => p.Price).ToList();
-            if (searchViewModel.SortOrder == "desc")
-                return model.OrderByDescending(p => p.Price).ToList();
-
-            return model;
+            return searchViewModel.SortOrder switch
+            {
+                "asc" => model.OrderBy(p => p.Price).ToList(),
+                "desc" => model.OrderByDescending(p => p.Price).ToList(),
+                _ => model
+            };
         }
 
         public AdminProductEditViewModel GetEdit(int id)

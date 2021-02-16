@@ -7,6 +7,7 @@ using NackademinWebShop.Models;
 using NackademinWebShop.Repository.CategoryRepository;
 using NackademinWebShop.ViewModels.Admin.Category;
 using NackademinWebShop.ViewModels.Categories;
+using NackademinWebShop.ViewModels.Products;
 
 namespace NackademinWebShop.Services.CategoryServices
 {
@@ -49,9 +50,22 @@ namespace NackademinWebShop.Services.CategoryServices
             return categoryEditViewModel;
         }
 
-        public CategoryListIndexViewModel Get(int id)
+        public CategoryListIndexViewModel GetProductsInCategory(int id, string sortOrder)
         {
-            return _mapper.Map<CategoryListIndexViewModel>(_categoryRepository.GetById(id));
+            var model =  _mapper.Map<CategoryListIndexViewModel>(_categoryRepository.GetById(id));
+
+            switch (sortOrder)
+            {
+                case "asc":
+                    model.Products = new List<ProductCategoryViewModel>(model.Products.OrderBy(p => p.Price));
+                    break;
+                case "desc":
+                    model.Products = new List<ProductCategoryViewModel>(model.Products.OrderByDescending(p => p.Price));
+                    break;
+            }
+
+            
+            return model;
         }
 
         public void Update(AdminCategoryEditViewModel model)
