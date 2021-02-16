@@ -6,8 +6,9 @@ using NackademinWebShop.ViewModels.Admin.Product;
 
 namespace NackademinWebShop.ViewModels.Products
 {
-    public class ProductListIndexViewModel
+    public class ProductSearchListViewModel
     {
-        public List<ProductDetailViewModel> Products { get; set; }
+        public List<ProductIndexViewModel> Products { get; set; }
+        public string SearchWord { get; set; }
     }
 }

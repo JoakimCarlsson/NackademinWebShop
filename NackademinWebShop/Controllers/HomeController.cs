@@ -23,9 +23,10 @@ namespace NackademinWebShop.Controllers
             _productServices = productServices;
         }
 
-        public IActionResult Index(string search, string sortOrder)
+        public IActionResult Index(ProductSearchViewModel searchViewModel)
         {
-            var model = new ProductListIndexViewModel { Products = _productServices.GetSearchResult(search, sortOrder) };
+            var model = new ProductSearchListViewModel { Products = _productServices.GetSearchResult(searchViewModel) };
+            model.SearchWord = searchViewModel.Search;
             return View(model);
         }
 

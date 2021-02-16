@@ -48,14 +48,14 @@ namespace NackademinWebShop.Services.ProductService
             return adminProductViewModels;
         }
 
-        public List<ProductDetailViewModel> GetSearchResult(string query, string sortOrder)
+        public List<ProductIndexViewModel> GetSearchResult(ProductSearchViewModel searchViewModel)
         {
             var products = _productRepository.GetAll(false);
-            var model = _mapper.Map<List<ProductDetailViewModel>>(products.Where(i => query == null || i.Name.ToLower().Contains(query.ToLower()) || i.Description.ToLower().Contains(query.ToLower())).ToList());
+            var model = _mapper.Map<List<ProductIndexViewModel>>(products.Where(i => searchViewModel.Search == null || i.Name.ToLower().Contains(searchViewModel.Search.ToLower()) || i.Description.ToLower().Contains(searchViewModel.Search.ToLower())).ToList());
 
-            if (sortOrder == "asc")
+            if (searchViewModel.SortOrder == "asc")
                 return model.OrderBy(p => p.Price).ToList();
-            if (sortOrder == "desc")
+            if (searchViewModel.SortOrder == "desc")
                 return model.OrderByDescending(p => p.Price).ToList();
 
             return model;
